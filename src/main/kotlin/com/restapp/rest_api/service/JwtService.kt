@@ -32,7 +32,7 @@ class JwtService {
         return generateToken(email, refreshExpiration.toLong())
     }
     
-    private fun generateToken(email: String, expiration: Long): String {
+    fun generateToken(email: String, expiration: Long): String {
         return Jwts.builder()
             .setSubject(email)
             .setIssuedAt(Date())
@@ -48,20 +48,34 @@ class JwtService {
                 .build()
                 .parseClaimsJws(token)
             true
+        } catch (e: io.jsonwebtoken.security.SignatureException) {
+            throw e
         } catch (e: Exception) {
             false
         }
     }
     
     fun getEmailFromToken(token: String): String {
-        return getClaims(token).subject
+        try {
+            return getClaims(token).subject
+        } catch (e: io.jsonwebtoken.security.SignatureException) {
+            throw e
+        } catch (e: Exception) {
+            throw io.jsonwebtoken.JwtException("Invalid token", e)
+        }
     }
     
     private fun getClaims(token: String): Claims {
-        return Jwts.parserBuilder()
-            .setSigningKey(key)
-            .build()
-            .parseClaimsJws(token)
-            .body
+        try {
+            return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .body
+        } catch (e: io.jsonwebtoken.security.SignatureException) {
+            throw e
+        } catch (e: Exception) {
+            throw io.jsonwebtoken.JwtException("Invalid token", e)
+        }
     }
 } 

@@ -179,6 +179,12 @@ src/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## License
+#
 
-This project is licensed under the MIT License - see the LICENSE file for details 
+<br>
+
+<div align="center">
+  <a  href="https://github.com/jeffersontavaresdm">
+    <img width="30%" src="https://github.com/jeffersontavaresdm/jeffersontavaresdm/blob/main/images/call-me-shaq.gif" width="25"/>
+  </a>
+</div>
