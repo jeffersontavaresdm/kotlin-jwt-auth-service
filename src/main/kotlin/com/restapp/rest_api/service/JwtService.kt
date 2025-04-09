@@ -4,11 +4,11 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
+import io.jsonwebtoken.security.SignatureException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.crypto.SecretKey
-import io.jsonwebtoken.security.SignatureException
 
 @Service
 class JwtService {
@@ -59,7 +59,7 @@ class JwtService {
     fun getEmailFromToken(token: String): String {
         try {
             return getClaims(token).subject
-        } catch (e: io.jsonwebtoken.security.SignatureException) {
+        } catch (e: SignatureException) {
             throw e
         } catch (e: Exception) {
             throw io.jsonwebtoken.JwtException("Invalid token", e)
@@ -73,7 +73,7 @@ class JwtService {
                 .build()
                 .parseClaimsJws(token)
                 .body
-        } catch (e: io.jsonwebtoken.security.SignatureException) {
+        } catch (e: SignatureException) {
             throw e
         } catch (e: Exception) {
             throw io.jsonwebtoken.JwtException("Invalid token", e)

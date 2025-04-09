@@ -139,4 +139,4 @@ class AuthServiceTest {
         verify(exactly = 0) { userRepository.findByEmail(any()) }
         verify(exactly = 0) { jwtService.generateAccessToken(any()) }
     }
-} 
+}
