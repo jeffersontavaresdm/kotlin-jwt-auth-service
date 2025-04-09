@@ -31,7 +31,7 @@ A secure REST API built with Spring Boot and Kotlin, featuring JWT-based authent
 ## Prerequisites
 
 - JDK 17 or higher
-- Gradle 8.x
+- Maven 3.9.x
 
 ## Configuration
 
@@ -92,7 +92,7 @@ POST /api/auth/refresh
 ## Running Tests
 
 ```bash
-./gradlew test
+./mvnw test
 ```
 
 ## Security Considerations
