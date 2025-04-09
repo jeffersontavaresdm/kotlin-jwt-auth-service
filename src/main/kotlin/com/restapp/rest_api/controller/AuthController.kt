@@ -27,7 +27,7 @@ class AuthController(
         return if (response != null) {
             ResponseEntity.ok(response)
         } else {
-            ResponseEntity.badRequest().build()
+            ResponseEntity.status(401).build()
         }
     }
     
@@ -37,7 +37,7 @@ class AuthController(
         return if (response != null) {
             ResponseEntity.ok(response)
         } else {
-            ResponseEntity.badRequest().build()
+            ResponseEntity.status(401).build()
         }
     }
 } 

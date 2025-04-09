@@ -16,6 +16,10 @@ class AuthService(
     private val jwtService: JwtService
 ) {
     fun register(request: RegisterRequest): LoginResponse {
+        if (userRepository.findByEmail(request.email) != null) {
+            throw IllegalArgumentException("Email already exists")
+        }
+        
         val hashedPassword = passwordEncoder.encode(request.password)
         val user = User(
             email = request.email,
