@@ -19,8 +19,8 @@
 
 ### 1. Clone the repository
 ```bash
-git clone <repository-url>
-cd rest-api
+git clone https://github.com/jeffersontavaresdm/kotlin-jwt-auth-service
+cd kotlin-jwt-auth-service
 ```
 
 ### 2. Build the project
